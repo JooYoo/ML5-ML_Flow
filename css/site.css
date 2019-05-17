@@ -68,7 +68,7 @@ span {
 
 #canvas-result {
     height: 300px;
-    width: 350px;
+    width: auto;
     background: lightgray;
     padding: 20px;
     text-align: center;
