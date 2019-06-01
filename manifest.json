@@ -4,7 +4,7 @@
     "description": "ML-Flow",
     "display": "standalone",
     "orientation": "portrait-primary",
-    "start_url": "/ML5-ML_Flow/index.html",
+    "start_url": "/ML5-mlflow/index.html",
     "theme_color": "#ffffff",
     "background_color": "#ffffff",
     "icons": [
