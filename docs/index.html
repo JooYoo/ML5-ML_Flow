@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Machine Learning Flow</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ML-Flow">
+    <link rel="apple-touch-icon" href="./assets/icon/57.png" sizes="57x57">
+    <link rel="apple-touch-icon" href="./assets/icon/60.png" sizes="60x60">
+    <link rel="apple-touch-icon" href="./assets/icon/80.png" sizes="80x80">
+    <link rel="apple-touch-icon" href="./assets/icon/114.png" sizes="114x114">
+    <link rel="apple-touch-icon" href="./assets/icon/120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="./assets/icon/180.png" sizes="180x180">
+    <link rel="apple-touch-icon" href="./assets/icon/1024.png" sizes="1024x1024">
+
+    <link rel="stylesheet" href="./css/site.css">
+    <link rel="stylesheet" href="./lib/uikit-3.0.3/css/uikit.min.css">
+    <link rel="stylesheet" href="./lib/bootstrap-4.3.1/css/bootstrap.css">
+    <link rel="stylesheet" href="./lib/stepper/stepper.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" crossorigin="anonymous"></script>
+    <script src="./lib/uikit-3.0.3/js/uikit.min.js"></script>
+    <script src="./lib/ml5/ml5.min.js"></script>
+    <script src="./lib/p5/p5.min.js"></script>
+</head>
+
+<body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-dark bg-dark">
+
+        <a class="navbar-brand" href="#" onclick="window.location.reload()">
+            <img class="logo" src="./assets/brain.svg">
+            Machine Learning Flow
+        </a>
+        <div class="btn-group" style="margin-right:20px;">
+            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                Settings
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a id="btn-device0" class="dropdown-item" href="#">Signal 0</a>
+                <a id="btn-device1" class="dropdown-item" href="#">Signal 1</a>
+                <div class="dropdown-divider"></div>
+                <a id="btn-save" class="dropdown-item" href="#">Save</a>
+                <a id="btn-load" class="dropdown-item" href="#">Load</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" onclick="window.location.reload()">Reset</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Progressbar -->
+    <div class="progress">
+        <div id="progress-percent" class="progress-bar"></div>
+    </div>
+
+
+    <!-- Structure -->
+    <div class="container-fluid" style="margin-top:100px;">
+
+        <div class="row">
+
+            <!-- Input -->
+            <div class="col">
+                <div class="card bg-secondary text-white" style="margin-top:200px; margin-left: 30px; max-width: 402px; border-radius: 10px; width: 400px; height: 370px;">
+                    <div class="card-header">INPUT</div>
+                    <div class="video-container">
+                    </div>
+                    <video id="video"></video>
+                    <!-- <div class="card-body">
+                    </div> -->
+                    <div class="card-footer bg-transparent border-secondary">
+                        <!-- <span id="loading"> Model Loading...</span> | <span id="video-status">Video Loading...</span> -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="row">
+                    <div id="line-0"></div>
+                </div>
+                <div class="row">
+                    <div id="line-1"></div>
+                </div>
+            </div>
+
+            <!-- Data Collection -->
+            <div class="col" style="margin-left: -150px;">
+
+                <!-- Standby -->
+                <div class="row">
+                    <div class="card bg-light mb-3" style="max-width: 30rem; margin-top: 80px; border-radius: 10px;">
+                        <div class="card-header">
+                            STANDBY
+                            <span>x</span> <span id="span-sampleA-count">0</span>
+                            <button id="btn-a" class="btn btn-outline-dark float-right" onmousedown="inter=setInterval(addLabelA, 1*100);"
+                                onmouseup="clearInterval(inter);" style="border-radius: 50px;">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="canvas-container-a" class="canvas"></div>
+                        <div class="card-footer bg-default border-light">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hand -->
+                <div class="row">
+                    <div class="card bg-light mb-3" style="max-width: 30rem; margin-top: 40px; border-radius: 10px;">
+                        <div class="card-header">
+                            HAND
+                            <span>x</span> <span id="span-sampleB-count">0</span>
+                            <button id="btn-b" class="btn btn-outline-dark float-right" onmousedown="inter=setInterval(addLabelB, 1*100);"
+                                onmouseup="clearInterval(inter);" style="border-radius: 50px;">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                        <div id="canvas-container-b" class="canvas"></div>
+                        <div class="card-footer bg-default border-light">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" style="margin-left:-30px;">
+                <div class="row">
+                    <div id="line-2"></div>
+                </div>
+                <div class="row">
+                    <div id="line-3"></div>
+                </div>
+            </div>
+
+            <!-- Train -->
+            <div class="col" style="margin-left:-180px;">
+                <button id="btn-train" type="button" class="btn btn-outline-default btn-circle btn-xl">
+                    <img src="./assets/brain.svg" width="49px; z-index:10;">
+                </button>
+            </div>
+
+            <div class="col" style="margin-left: -200px;">
+                <div class="row">
+                    <div id="line-4"></div>
+                </div>
+            </div>
+
+            <!-- Output -->
+            <div class="col" style="margin-right:40px; margin-left: -150px;">
+                <div class="card bg-secondary text-white mb-3" style="max-width: 30rem;  margin-top: 210px; border-radius: 10px;">
+                    <div class="card-header border-secondary">
+                        OUTPUT
+                        <!-- <button id="btn-predict" class="btn btn-outline-light float-right"
+                            onmousedown="inter=setInterval(addLabelB, 1*100);" onmouseup="clearInterval(inter);"
+                            style="border-radius: 50px;">
+                            <i class="fas fa-play"></i>
+                        </button> -->
+                    </div>
+                    <div id="canvas-result"></div>
+                    <div class="card-footer bg-default border-secondary">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Train -->
+    <!-- <div class="canvas-container">
+        <button id="btn-train" class="btn">
+            TRAIN
+        </button>
+
+        <div id="loss" class="canvas"></div>
+
+        <button id="btn-train" type="button" class="btn btn-secondary btn-circle btn-xl">
+            <i class="fas fa-graduation-cap"></i>
+        </button>
+    </div> -->
+
+
+    <script src="./lib/jquery/jquery.js"></script>
+    <script src="./lib/p5/p5.min.js"></script>
+    <script src="./lib/popper/popper.min.js"></script>
+    <script src="./lib/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script src="./lib/tf/Tensorflow.js"></script>
+    <script src="./js/camera.js"></script>
+    <script src="./js/retrain.js"></script>
+</body>
+
+</html>
