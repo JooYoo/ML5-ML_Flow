@@ -6,6 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Machine Learning Flow</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="ML-Flow">
+    <link rel="apple-touch-icon" href="./assets/icon/57.png" sizes="57x57">
+    <link rel="apple-touch-icon" href="./assets/icon/60.png" sizes="60x60">
+    <link rel="apple-touch-icon" href="./assets/icon/80.png" sizes="80x80">
+    <link rel="apple-touch-icon" href="./assets/icon/114.png" sizes="114x114">
+    <link rel="apple-touch-icon" href="./assets/icon/120.png" sizes="120x120">
+    <link rel="apple-touch-icon" href="./assets/icon/180.png" sizes="180x180">
+    <link rel="apple-touch-icon" href="./assets/icon/1024.png" sizes="1024x1024">
+
     <link rel="stylesheet" href="./css/site.css">
     <link rel="stylesheet" href="./lib/uikit-3.0.3/css/uikit.min.css">
     <link rel="stylesheet" href="./lib/bootstrap-4.3.1/css/bootstrap.css">
@@ -54,8 +67,7 @@
 
             <!-- Input -->
             <div class="col">
-                <div class="card bg-secondary text-white"
-                    style="margin-top:200px; margin-left: 30px; max-width: 402px; border-radius: 10px; width: 400px; height: 370px;">
+                <div class="card bg-secondary text-white" style="margin-top:200px; margin-left: 30px; max-width: 402px; border-radius: 10px; width: 400px; height: 370px;">
                     <div class="card-header">INPUT</div>
                     <div class="video-container">
                     </div>
@@ -86,9 +98,8 @@
                         <div class="card-header">
                             STANDBY
                             <span>x</span> <span id="span-sampleA-count">0</span>
-                            <button id="btn-a" class="btn btn-outline-dark float-right"
-                                onmousedown="inter=setInterval(addLabelA, 1*100);" onmouseup="clearInterval(inter);"
-                                style="border-radius: 50px;">
+                            <button id="btn-a" class="btn btn-outline-dark float-right" onmousedown="inter=setInterval(addLabelA, 1*100);"
+                                onmouseup="clearInterval(inter);" style="border-radius: 50px;">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -104,9 +115,8 @@
                         <div class="card-header">
                             HAND
                             <span>x</span> <span id="span-sampleB-count">0</span>
-                            <button id="btn-b" class="btn btn-outline-dark float-right"
-                                onmousedown="inter=setInterval(addLabelB, 1*100);" onmouseup="clearInterval(inter);"
-                                style="border-radius: 50px;">
+                            <button id="btn-b" class="btn btn-outline-dark float-right" onmousedown="inter=setInterval(addLabelB, 1*100);"
+                                onmouseup="clearInterval(inter);" style="border-radius: 50px;">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
@@ -141,8 +151,7 @@
 
             <!-- Output -->
             <div class="col" style="margin-right:40px; margin-left: -150px;">
-                <div class="card bg-secondary text-white mb-3"
-                    style="max-width: 30rem;  margin-top: 210px; border-radius: 10px;">
+                <div class="card bg-secondary text-white mb-3" style="max-width: 30rem;  margin-top: 210px; border-radius: 10px;">
                     <div class="card-header border-secondary">
                         OUTPUT
                         <!-- <button id="btn-predict" class="btn btn-outline-light float-right"
