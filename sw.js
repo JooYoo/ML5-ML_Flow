@@ -16,7 +16,7 @@ self.addEventListener('install', function (event) {
         'lib/ml5/ml.min.js',
         'js/fetch.js',
         'js/promise.js',
-        'css/style.css',
+        'css/site.css',
         'favicon.ico',
         'manifest.json',
         'img/icon-60.png',
