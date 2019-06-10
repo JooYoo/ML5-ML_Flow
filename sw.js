@@ -13,7 +13,7 @@ self.addEventListener('install', function (event) {
         'sw.js',
         'js/camera.js',
         'js/retrain.js',
-        'lib/ml5/ml.min.js',
+        'lib/ml5/ml5.min.js',
         'js/fetch.js',
         'js/promise.js',
         'css/site.css',
